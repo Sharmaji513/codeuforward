@@ -13,3 +13,37 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+model User {
+  id String @id @default(uuid())
+  name String?
+  email String @unique
+  image String
+  password String
+  role UserRole @default(USER)
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+
+
+}
+
+
+// model Problem {
+//   id String @id @default((uuid()))
+//   title String
+//   description String
+//   tags String[]
+//   userId String
+//   examples Json
+//   constraints String
+//   hints String?
+//   editorial String?
+
+
+
+// }
